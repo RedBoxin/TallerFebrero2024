@@ -68,16 +68,14 @@
         dest: /etc/systemd/system/tomcat.service
     notify: Reload systemd
   
-  - name: Iniciar Tomcat
-    ansible.builtin.command:
-        cmd: /opt/apache-tomcat-8.5.76/bin/startup.sh
+
 
   - name: Iniciar Tomcat
     ansible.builtin.service:
         name: tomcat
         enabled: true
         state: started
-        
+
 
   
   - name: Habilitar servicio http y https

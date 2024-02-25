@@ -1,13 +1,41 @@
+<!DOCTYPE html>
 <html>
 <head>
-   <title>Servidor Web en {{ ansible_hostname }}</title>
+    <title>Street Fighter en {{ ansible_hostname }} </title>
+    <style>
+        body {
+            background-image: url('street_fighter_background.jpg');
+            background-size: cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-<p> Mi nombre es {{ ansible_fqdn }}
-<p> La distribucion es {{ ansible_distribution }} version {{ ansible_distribution_version }}
-<p> La fecha de hiy es {{ ansible_date_time.date }}
-<p> Mi IPV4 es {{ ansible_all_ipv4_addresses[1] }}
-<p> El autor es {{ AUTOR }}
-<p> Mi grupo musical favorito es {{ GRUPO_MUSICAL }}
+    <h1>Bienvenido al mundo de Street Fighter</h1>
+    <p> Mi nombre es {{ ansible_fqdn }}
+    <p> Nuestro servidor esta en la distribucion {{ ansible_distribution }} version {{ ansible_distribution_version }}
+    <p> Nuestra IPV4 es {{ ansible_all_ipv4_addresses[1] }}
+    <p>¡Prepárate para la batalla!</p>
+    <p> La fecha de hoy es {{ ansible_date_time.date }}
+    <p>Selecciona tu luchador favorito y lucha por la victoria.</p>
+    <select> 
+    <option> {{ AUTOR }} </option>
+    <option> {{ GRUPO_MUSICAL }} </option>
+    </select>
+    <p>¡Que comience el combate!</p>
+    
 </body>
 </html>

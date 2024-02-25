@@ -1,16 +1,17 @@
 ---
 - name: Configuración de Proxy Reverso para Acceso a la Aplicación Java
   hosts: ubuntu
-  become: yes
+  become: true
+
   tasks:
-    - name: Instalar Nginx (si aún no está instalado)
-      apt:
+    - name: Instalar Nginx 
+      ansible.builtin.apt:
         name: nginx
         state: present
 
     - name: Crear archivo de configuración para el proxy
       template:
-        src: proxy_config.j2
+        src: nginx_proxy_config.j2
         dest: /etc/nginx/sites-available/my_app
       notify:
         - Habilitar proxy
