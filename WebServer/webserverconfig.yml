@@ -2,9 +2,7 @@
 - hosts: rocky
   user: ansible
   become: true
-  vars_files: 
-  - /home/ansible/TallerFebrero2024/vars/personal.yml
- 
+  
   tasks:
 
   - name: Instalar OpenJDK 8
@@ -90,7 +88,7 @@
     - https
      
 
-  - name: Habilitar puertos 80 y 443 
+  - name: Habilitar puertos
     ansible.posix.firewalld:
       port: "{{ item }}"
       state: enabled
@@ -99,25 +97,9 @@
 
     loop: 
     - 80/tcp
-    - 443/tcp    
-
-  - name: Crear directorio /var/www/html
-    ansible.builtin.file:
-        path: /var/www/html
-        state: directory
-        mode: '0777'
-        owner: ansible
-        group: ansible
-  - name: Instalar index.html costunizado con un tamplate
-    ansible.builtin.template:
-      src: /home/ansible/TallerFebrero2024/templates/index.j2
-      dest: /var/www/html/index.html
-      mode: '0444'
-      
-         
-  
-  
-
+    - 443/tcp
+    - 8080/tcp   
+   
   handlers:
 
    - name: Reload systemd
