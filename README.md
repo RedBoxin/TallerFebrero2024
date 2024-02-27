@@ -6,7 +6,6 @@ Este playbook de Ansible se utiliza para actualizar los paquetes del sistema en 
 ## Tareas:
 Actualiza los paquetes en los servidores basados en Red Hat utilizando yum.
 Actualiza los paquetes en los servidores basados en Debian utilizando apt.
-## Handlers:
 Reinicia los servidores si es necesario después de la actualización.
 
 ## Uso
