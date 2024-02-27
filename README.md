@@ -1,12 +1,12 @@
 # TallerFebrero2024
 ## Playbook de Actualización de Paquetes
 
-Este playbook de Ansible se utiliza para actualizar los paquetes del sistema en servidores Linux. Se ejecutará en servidores basados en Red Hat (como Rocky Linux) y Debian (como Ubuntu). El playbook actualizará todos los paquetes del sistema a su última versión disponible.
+Este playbook de Ansible se utiliza para actualizar los paquetes del sistema en servidores Linux. Se ejecutará en servidores basados en Red Hat (Rocky Linux) y Debian (Ubuntu). El playbook actualizará todos los paquetes del sistema a su última versión disponible.
 
 ## Tareas:
 Actualiza los paquetes en los servidores basados en Red Hat utilizando yum.
 Actualiza los paquetes en los servidores basados en Debian utilizando apt.
-Reinicia los servidores si es necesario después de la actualización.
+Reinicia los servidores después de la actualización.
 
 ## Uso
 
@@ -25,12 +25,11 @@ Reinicia los servidores si es necesario después de la actualización.
 
 ## Playbook de Instalación de OpenJDK y Servidor Apache Tomcat
 
-Este playbook de Ansible automatiza la instalación y configuración de Apache Tomcat en servidores Ubuntu y Rocky Linux.
+Este playbook de Ansible automatiza la instalación y configuración de Apache Tomcat en un servidor Rocky Linux.
 
 ## Requisitos previos
 
-- Ansible debe estar instalado en la máquina desde la cual ejecutarás el playbook.
-- Tener acceso SSH a los servidores Ubuntu y Rocky Linux donde deseas instalar Tomcat.
+- Tener acceso SSH a los servidor Rocky Linux donde deseas instalar Tomcat.
 - Asegúrate de que los servidores tengan conectividad a internet para descargar paquetes y archivos necesarios.
 
 ## Taras:
@@ -57,7 +56,8 @@ Este playbook de Ansible automatiza la instalación y configuración de Apache T
 - Si necesitas modificar el comportamiento del playbook, puedes editar el archivo `ansible/playbook.yml`.
 
 ## Playbook  configuracion de Proxy Reverso Apache2
-Este playbook de Ansible se utiliza para configurar un servidor Ubuntu con Apache2 como un proxy reverso para acceder a una aplicación Java en otro servidor. El playbook realiza las siguientes tareas:
+Este playbook de Ansible se utiliza para configurar un servidor Ubuntu con Apache2 como un proxy reverso para acceder a Tomcat en el servidor Rocky. 
+El playbook realiza las siguientes tareas:
 - Instala el cortafuegos UFW y habilita los puertos 80 y 22.
 - Instala Apache2 en el servidor Ubuntu.
 - Configura un archivo de sitio de proxy reverso en Apache2.
