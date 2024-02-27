@@ -9,6 +9,7 @@
     ansible.builtin.yum:
       name: java-1.8.0-openjdk-devel
       state: present
+      update_cache: true
     
 
   - name: Crear el directorio de instalación de TomcSat
@@ -66,13 +67,17 @@
         dest: /etc/systemd/system/tomcat.service
     notify: Reload systemd
   
-
+  - name: archivo sample 
+    ansible.builtin.get_url:
+        url: "https://github.com/emverdes/docker-tomcat-tutorial/raw/master/sample.war"
+        dest: /opt/apache-tomcat-8.5.76/webapps
 
   - name: Iniciar Tomcat
     ansible.builtin.service:
         name: tomcat
         enabled: true
         state: started
+  
 
 
   

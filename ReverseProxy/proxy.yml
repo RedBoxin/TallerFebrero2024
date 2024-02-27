@@ -4,30 +4,48 @@
   become: true
 
   tasks:
-    - name: Instalar Nginx 
-      ansible.builtin.apt:
-        name: nginx
-        state: present
+    
+  - name: Instalar ufw
+    ansible.builtin.apt:
+      name: ufw
+      state: present
+      update_cache: true
+    
+  - name: Allow everything and enable UFW
+    community.general.ufw:
+      state: enabled
+    
+  - name: Habilitar ufw 80
+    community.general.ufw:
+      rule: allow
+      port: '80'
+      proto: tcp
+    
+  - name: Habilitar puerto 22
+    community.general.ufw:
+      rule: allow
+      port: '22'
+      proto: tcp
 
-    - name: Crear archivo de configuración para el proxy
-      template:
-        src: nginx_proxy_config.j2
-        dest: /etc/nginx/sites-available/my_app
-      notify:
-        - Habilitar proxy
-        - Reiniciar Nginx
+  - name: Instalar Apache
+    ansible.builtin.apt:
+      name: apache2
+      state: present
 
-    - name: Crear enlace simbólico para habilitar el proxy
-      file:
-        src: /etc/nginx/sites-available/my_app
-        dest: /etc/nginx/sites-enabled/my_app
-        state: link
+  - name: Configurar sitio de proxy reverso
+    ansible.builtin.copy:
+      src: ./proxyArch.conf
+      dest: /etc/apache2/conf-enabled
+    notify: Reiniciar Apache
+
+  - name: Habilitar sitio de proxy reverso
+    community.general.apache2_module:
+      state: present
+      name: proxy_http
+    notify: Reiniciar Apache
 
   handlers:
-    - name: Habilitar proxy
-      command: nginx -t
-      changed_when: false
-    - name: Reiniciar Nginx
+    - name: Reiniciar Apache
       service:
-        name: nginx
+        name: apache2
         state: restarted
