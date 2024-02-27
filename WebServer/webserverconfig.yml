@@ -12,7 +12,7 @@
       update_cache: true
     
 
-  - name: Crear el directorio de instalación de TomcSat
+  - name: Crear el directorio de instalación de Tomcat
     ansible.builtin.file:
         path: /opt/tomcat
         state: directory

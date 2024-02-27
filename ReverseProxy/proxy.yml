@@ -34,14 +34,15 @@
 
   - name: Configurar sitio de proxy reverso
     ansible.builtin.copy:
-      src: ./proxyArch.conf
+      src: proxy2.conf
       dest: /etc/apache2/conf-enabled
     notify: Reiniciar Apache
 
   - name: Habilitar sitio de proxy reverso
     community.general.apache2_module:
-      state: present
       name: proxy_http
+      state: present
+      
     notify: Reiniciar Apache
 
   handlers:
